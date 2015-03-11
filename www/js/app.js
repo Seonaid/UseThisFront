@@ -57,6 +57,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+
+  .state('tab.fridge', {
+    url: '/fridge',
+    views: {
+      'tab-fridge': {
+        templateUrl: 'templates/tab-fridge.html',
+        controller: 'FridgeCtrl'
+      }
+    }
+  })
+
+  .state('tab.add-food', {
+    url: '/add-food',
+    views: {
+      'tab-add-food': {
+        templateUrl: 'templates/tab-add-food.html',
+        controller: 'AddFoodCtrl'
+      }
+    }
+  })
+
     .state('tab.chat-detail', {
       url: '/chats/:chatId',
       views: {

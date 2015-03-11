@@ -1,0 +1,16 @@
+<ion-view view-title="Add Foods">
+  <ion-content>
+  Hi! Add food here!
+    <form ng-submit="createFood(food)">
+      <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Food?" ng-model="food.foodName">
+      </label>
+      </div>
+
+      <div class="padding">
+      <button type="submit" class="button button-block button-positive">Add Food</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

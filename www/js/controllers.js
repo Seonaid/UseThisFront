@@ -2,6 +2,10 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
+.controller('FridgeCtrl', function($scope) {})
+
+.controller('AddFoodCtrl', function($scope) {})
+
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
