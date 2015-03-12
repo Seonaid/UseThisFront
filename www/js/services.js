@@ -1,5 +1,80 @@
 angular.module('starter.services', [])
 
+// .service('LoginService', ['$http', function($q, $http) {
+//     return {
+//         loginUser: function(email, pw) {
+//             var deferred = $q.defer();
+//             var promise = deferred.promise;
+
+//             // $http({method: 'POST', url: "http://localhost:3000/api/login", 
+//             //   {email: email, password: pw}}).then(
+
+//             //   function(user){
+//             //     if(user) { 
+//             //       deferred.resolve(response); 
+//             //     } else {
+//             //       deferred.reject('Wrong credentials.');
+//             //     }
+//             //   } 
+//             //   );
+
+ 
+//             if (email == 'seonaidl@gmail.com' && pw == 'secret') {
+//                 deferred.resolve('Welcome ' + name + '!');
+//             } else {
+//                 deferred.reject('Wrong credentials.');
+//             }
+//             promise.success = function(fn) {
+//                 promise.then(fn);
+//                 return promise;
+//             }
+//             promise.error = function(fn) {
+//                 promise.then(null, fn);
+//                 return promise;
+//             }
+//             // return promise;
+
+
+//         }
+//     }
+// }])
+
+.service('LoginService', function($q) {
+    return {
+        loginUser: function(email, pw) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+            console.log('about to log in');
+
+
+            // $http({method: 'POST', url: "http://localhost:3000/api/login", 
+            //   {email: email, password: pw}}).
+            // success(function(data, status, headers, config){
+            //   console.log(data);
+            //   return data;
+            // }).
+            // error(function(data, status, headers, config){
+            //   return status;
+            // });
+ 
+            if (email == 'seonaidl@gmail.com' && pw == 'secret') {
+                deferred.resolve('Welcome ' + name + '!');
+            } else {
+                deferred.reject('Wrong credentials.');
+            }
+            promise.success = function(fn) {
+                promise.then(fn);
+                return promise;
+            }
+            promise.error = function(fn) {
+                promise.then(null, fn);
+                return promise;
+            }
+            return promise;
+        }
+    }
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
