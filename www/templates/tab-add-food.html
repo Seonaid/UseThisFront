@@ -4,12 +4,27 @@
     <form ng-submit="createFood(food)">
       <div class="list list-inset">
       <label class="item item-input">
-        <input type="text" placeholder="Food?" ng-model="food.foodName">
+        <input type="text" placeholder="What do you want to add?" ng-model="data.foodName">
       </label>
+
+      <label class="item item-input item-select" ng-model="data.time_period">
+          <div class="input-label">
+          Use Within
+          </div>
+          <label class="item item-input">
+            <input type="text" placeholder="how many" ng-model="data.how_many">
+          </label>  
+          <select>
+
+          <option selected>Days</option>
+          <option>Weeks</option>
+          <option>Months</option>
+          </select>
+        </label>
       </div>
 
       <div class="padding">
-      <button type="submit" class="button button-block button-positive">Add Food</button>
+      <button class="button button-block button-positive" ng-click="addFood()">Add Food</button>
       </div>
     </form>
   </ion-content>

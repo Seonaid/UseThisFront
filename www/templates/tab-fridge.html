@@ -2,11 +2,13 @@
   <ion-content class="padding">
     <div class="list card">
       <div class="item item-divider">Fridge</div>
+      (This is a GET from the server, but it doesn't include a user id yet)
       <div class="item item-body">
-        <div>
-          A list of the contents of the fridge
+        <div ng-repeat = "food in foods">
+          <div class = "item"><a ng-href="{{food.id}}">{{food.foodName}}</a> ({{food.useBy | date: 'MMM dd'}})</item>
       </div>
     </div>
+  </div>
     <div class="list card">
       <div class="item item-divider">Freezer</div>
       <div class="item item-body">

@@ -1,8 +1,31 @@
 angular.module('starter.controllers', [])
 
-.controller('FridgeCtrl', function($scope) {})
+.controller('FridgeCtrl', ['$scope', '$http', function($scope, $http) {
+	  $scope.fridge = [];
 
-.controller('AddFoodCtrl', function($scope) {})
+// Retrieve existing communities from Nerdique
+
+  $http.get('http://localhost:3000/api/').then(function(response){
+    console.log('Success', response);
+    $scope.fridge = response.data;
+    $scope.foods = response.data.Food;
+    console.log($scope.foods);
+
+  }, function(err){
+    console.log('ERR', err);
+  })
+}])
+
+.controller('AddFoodCtrl', ['$scope', 'AddFoodService', function($scope, AddFoodService) {
+	$scope.data = {}
+
+	$scope.addFood = function(){
+		AddFoodService.addFood($scope.data.foodName, $scope.data.how_many, $scope.data.time_period)
+			.success(function(data){
+				state.go('tab.add-food');
+			});
+	}
+}])
 
 
 // local login copied from simple_login

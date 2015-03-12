@@ -39,12 +39,27 @@ angular.module('starter.services', [])
 //     }
 // }])
 
+.service('AddFoodService', function($q){
+  return {
+    addFood: function(food_name, how_many, time_period) {
+      // make call to API in UseThisBack
+      console.log('adding food ' + food_name);
+      return true;
+    }
+  }
+})
+
 .service('LoginService', function($q) {
     return {
         loginUser: function(email, pw) {
             var deferred = $q.defer();
             var promise = deferred.promise;
-            console.log('about to log in');
+
+            var data = {
+              email: email,
+              password: pw
+            }
+            console.log('about to log in ' + email);
 
 
             // $http({method: 'POST', url: "http://localhost:3000/api/login", 
@@ -56,7 +71,8 @@ angular.module('starter.services', [])
             // error(function(data, status, headers, config){
             //   return status;
             // });
- 
+         // $http({method: 'POST', url: 'http://localhost:3000/api/login', data: data});
+
             if (email == 'seonaidl@gmail.com' && pw == 'secret') {
                 deferred.resolve('Welcome ' + name + '!');
             } else {
