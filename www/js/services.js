@@ -45,6 +45,7 @@ angular.module('starter.services', [])
       // make call to API in UseThisBack
       console.log('adding food ' + food_name);
       console.log('good for ' + how_many);
+      console.log(time_period);
       var data = {};
       var user = {};
       var newFood = {};
@@ -53,7 +54,7 @@ angular.module('starter.services', [])
       data.user = user;
       newFood.foodName = food_name;
       newFood.how_many = how_many;
-      newFood.time_period = 'weeks';
+      newFood.time_period = time_period;
       data.newFood = newFood;
 
       console.log('sending' + data);
