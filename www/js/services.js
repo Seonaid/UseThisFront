@@ -75,35 +75,63 @@ angular.module('starter.services', [])
   }
 }])
 
-.service('LoginService', function($q) {
+.service('LoginService', ['$http', '$q', function($http, $q) {
+    // return {
+    //     loginUser: function(email, pw) {
+    //       console.log('in loginUser with ' + email);
+    //       var user = {};
+    //       user.email = email;
+    //       user.password = pw;
+    
+    //       $http({method: 'POST', url: 'http://localhost:3000/api/login', data: user}).
+    //         success(function(data, status, headers, config) {
+    //       // this callback will be called asynchronously
+    //       // when the response is available
+    //         console.log('it\'s a miracle!');
+    //         console.log(data);
+    //         }).
+    //         error(function(data, status, headers, config) {
+    //           // called asynchronously if an error occurs
+    //           // or server returns response with an error status.
+    //           console.log(data);
+    //           console.log('or the same old thing');
+    //         });        
+
+    //         return true;
+    //     }
+    // }
+
     return {
         loginUser: function(email, pw) {
             var deferred = $q.defer();
             var promise = deferred.promise;
 
-            var data = {
-              email: email,
-              password: pw
-            }
-            console.log('about to log in ' + email);
+          console.log('in loginUser with ' + email);
+          var user = {};
+          user.email = email;
+          user.password = pw;
 
+            $http({method: 'POST', url: 'http://localhost:3000/api/login', data: user}).
+            success(function(data, status, headers, config) {
+          // this callback will be called asynchronously
+          // when the response is available
+            console.log('it\'s a miracle!');
+                deferred.resolve(data);
+                promise.data = data;
+                console.log(data);
+            }).
+            error(function(data, status, headers, config) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+              console.log(data);
+              console.log('or the same old thing');
+            }); 
+ 
+            // if (name == 'user' && pw == 'secret') {
 
-            // $http({method: 'POST', url: "http://localhost:3000/api/login", 
-            //   {email: email, password: pw}}).
-            // success(function(data, status, headers, config){
-            //   console.log(data);
-            //   return data;
-            // }).
-            // error(function(data, status, headers, config){
-            //   return status;
-            // });
-         // $http({method: 'POST', url: 'http://localhost:3000/api/login', data: data});
-
-            if (email == 'seonaidl@gmail.com' && pw == 'secret') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
+            // } else {
+            //     deferred.reject('Wrong credentials.');
+            // }
             promise.success = function(fn) {
                 promise.then(fn);
                 return promise;
@@ -115,7 +143,7 @@ angular.module('starter.services', [])
             return promise;
         }
     }
-})
+}])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array

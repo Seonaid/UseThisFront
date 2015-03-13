@@ -35,20 +35,22 @@ angular.module('starter.controllers', [])
 
 // local login copied from simple_login
 
-.controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+.controller('LoginCtrl', ['$scope', 'LoginService', '$ionicPopup', '$state', function($scope, LoginService, $ionicPopup, $state) {
     $scope.data = {};
  
-    $scope.login = function() {
-        LoginService.loginUser($scope.data.email, $scope.data.password).success(function(data) {
-            $state.go('tab.fridge');
-        }).error(function(data) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
-            });
-        });
+    $scope.loginUser = function() {
+        LoginService.loginUser($scope.data.email, $scope.data.password)
+        	.success(function(data) {
+				console.log('from LoginCtrl' + JSON.stringify.data);
+	            $state.go('tab.fridge');
+	        }).error(function(data) {
+	            var alertPopup = $ionicPopup.alert({
+	                title: 'Login failed!',
+	                template: 'Please check your credentials!'
+	            });
+	        })
     }
-})
+}])
 
 // .controller('ChatsCtrl', function($scope, Chats) {
 //   $scope.chats = Chats.all();
