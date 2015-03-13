@@ -39,15 +39,40 @@ angular.module('starter.services', [])
 //     }
 // }])
 
-.service('AddFoodService', function($q){
+.service('AddFoodService', ['$http', '$q', function($http, $q){
   return {
     addFood: function(food_name, how_many, time_period) {
       // make call to API in UseThisBack
       console.log('adding food ' + food_name);
+      console.log('good for ' + how_many);
+      var data = {};
+      var user = {};
+      var newFood = {};
+      user.id = 1
+
+      data.user = user;
+      newFood.foodName = food_name;
+      newFood.how_many = how_many;
+      newFood.time_period = 'weeks';
+      data.newFood = newFood;
+
+      console.log('sending' + data);
+      $http({method: 'POST', url: 'http://localhost:3000/api/add_food', data: data}).
+        success(function(data, status, headers, config) {
+      // this callback will be called asynchronously
+      // when the response is available
+        console.log('it\'s a miracle!');
+        }).
+        error(function(data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.log(data);
+          console.log('just like I planned it');
+        });
       return true;
     }
   }
-})
+}])
 
 .service('LoginService', function($q) {
     return {

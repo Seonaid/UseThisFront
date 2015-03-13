@@ -23,9 +23,14 @@ angular.module('starter.controllers', [])
 		AddFoodService.addFood($scope.data.foodName, $scope.data.how_many, $scope.data.time_period)
 			.success(function(data){
 				state.go('tab.add-food');
+			}).error(function(data){
+	            var alertPopup = $ionicPopup.alert({
+                title: 'tradgedy!',
+                template: 'still not working!'
 			});
-	}
-}])
+			})}
+		}
+])
 
 
 // local login copied from simple_login
