@@ -1,12 +1,10 @@
 angular.module('starter.controllers', ['ngStorage'])
 
 .controller('FridgeCtrl', ['$scope', '$http', '$localStorage', function($scope, $http, $localStorage) {
-	  $scope.fridge = [];
+	  // $scope.fridge = []; // pretty sure this doesn't do anything.
+	// initial foods object is retrieved with the user on login
 
-// Retrieve existing foods from fridge. Move this to services. Also, just make it an update. because the 
-// initial login returns the user *with* the food in their fridge.
-
-	console.log('Do I have the food? ' + $localStorage.foods);
+	console.log('Do I have the food? ' + JSON.stringify($localStorage.foods));
 	$scope.foods = $localStorage.foods;
 
 }])
@@ -26,12 +24,7 @@ angular.module('starter.controllers', ['ngStorage'])
 			});
 			})}
 		}
-	// $scope.reset = function(form){
-	// 	if (form) {
-	// 		form.$setPristine();
-	// 		form.$setUntouched();
-	// 	}
-	// }
+
 ])
 
 

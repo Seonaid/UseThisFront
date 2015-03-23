@@ -49,7 +49,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-fridge': {
         templateUrl: 'templates/tab-fridge.html',
-        controller: 'FridgeCtrl'
+        controller: 'FridgeCtrl',
+        controllerAs: 'fridge'
       }
     }
   })
@@ -59,7 +60,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-add-food': {
         templateUrl: 'templates/tab-add-food.html',
-        controller: 'AddFoodCtrl'
+        controller: 'AddFoodCtrl',
+        controllerAs: 'addFood'
       }
     }
   })

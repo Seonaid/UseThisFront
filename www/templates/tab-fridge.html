@@ -4,9 +4,11 @@
       <div class="item item-divider">Fridge</div>
       <div class="item item-body">
         <div ng-repeat = "food in foods">
-          <div class = "item"><a ng-href="{{food.id}}">{{food.foodName}}</a> ({{food.useBy | date: 'MMM dd'}})</item>
+          <div class = "item"><input type = "checkbox" ng-model = "food.isChecked"/>
+            <a ng-href="{{food.id}}">{{food.foodName}}</a> ({{food.useBy | date: 'MMM dd'}})</item>
       </div>
-    </div>
+      
+    </div><button>Delete</button>
   </div>
     <div class="list card">
       <div class="item item-divider">Freezer</div>
