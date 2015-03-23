@@ -1,35 +1,37 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngStorage'])
 
-.controller('FridgeCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('FridgeCtrl', ['$scope', '$http', '$localStorage', function($scope, $http, $localStorage) {
 	  $scope.fridge = [];
 
-// Retrieve existing communities from Nerdique
+// Retrieve existing foods from fridge. Move this to services. Also, just make it an update. because the 
+// initial login returns the user *with* the food in their fridge.
 
-  $http.get('http://localhost:3000/api/').then(function(response){
-    console.log('Success', response);
-    $scope.fridge = response.data;
-    $scope.foods = response.data.Food;
-    console.log($scope.foods);
+	console.log('Do I have the food? ' + $localStorage.foods);
+	$scope.foods = $localStorage.foods;
 
-  }, function(err){
-    console.log('ERR', err);
-  })
 }])
 
 .controller('AddFoodCtrl', ['$scope', 'AddFoodService', function($scope, AddFoodService) {
-	$scope.data = {}
+	$scope.data = {};
 
-	$scope.addFood = function(){
+	$scope.addFood = function(){ 
 		AddFoodService.addFood($scope.data.foodName, $scope.data.how_many, $scope.data.time_period)
 			.success(function(data){
 				state.go('tab.add-food');
+				$scope.reset(); // probably need to actually do a $scope.reset ?
 			}).error(function(data){
 	            var alertPopup = $ionicPopup.alert({
-                title: 'tradgedy!',
+                title: 'tragedy!',
                 template: 'still not working!'
 			});
 			})}
 		}
+	// $scope.reset = function(form){
+	// 	if (form) {
+	// 		form.$setPristine();
+	// 		form.$setUntouched();
+	// 	}
+	// }
 ])
 
 
@@ -51,17 +53,6 @@ angular.module('starter.controllers', [])
 	        })
     }
 }])
-
-// .controller('ChatsCtrl', function($scope, Chats) {
-//   $scope.chats = Chats.all();
-//   $scope.remove = function(chat) {
-//     Chats.remove(chat);
-//   }
-// })
-
-// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// })
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
